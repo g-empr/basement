@@ -27,4 +27,4 @@ jobs:
           command: npm run generate
       - run:
           name: Deploy
-          command: ~/.local/bin/firebase deploy --token 1/u-9wcVcXPai_8EzNaMMmw4fxjF9olo3Rt2p2QTjlMeE --project the-base
+          command: ~/.local/bin/firebase deploy --token $FIREBASE_TOKEN --project basement-12054
