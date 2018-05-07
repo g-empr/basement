@@ -69,6 +69,8 @@ firebase deploy
 ```
 firebase login:ci
 ```
+CircleCIの設定画面(Settings=>ユーザ名=>プロジェクト名=>Environment Variables)で、firebaseのプロジェクトIDを`$FIREBASE_PJ`、先程のトークンを`FIREBASE_TOKEN`として設定。  
+  
 次に`.circleci/config.yml`を作成し、以下を記述。
 ```
 version: 2
@@ -100,7 +102,7 @@ jobs:
           command: npm run generate
       - run:
           name: Deploy
-          command: ~/.local/bin/firebase deploy --token [さきほど取得したトークン] --project basement-12054
+          command: ~/.local/bin/firebase deploy --token $FIREBASE_TOKEN --project $FIREBASE_PJ
 ```
 最後にpushして確認する。
 ```
