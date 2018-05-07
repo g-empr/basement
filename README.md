@@ -102,6 +102,10 @@ jobs:
           name: Deploy
           command: ~/.local/bin/firebase deploy --token [さきほど取得したトークン] --project the-base
 ```
+最後にpushして確認する。
+```
+git push
+```
   
 ## ぶち当たったところ
 ### Gitが認証エラー―を履くようになった
