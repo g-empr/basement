@@ -7,6 +7,7 @@
 - Vue.js
     - vue-cli
 - Firebase
+- CircleCI
   
 ## Node.js/npmをインストール
 nodistは[ここ](https://github.com/marcelklehr/nodist/releases)から。
@@ -54,12 +55,54 @@ firebase login
 予めブラウザからfirebase consoleにアクセスし、hosting用のプロジェクトを新規作成しておく。  
 できていれば、コマンドにてデプロイ先を指定する。
 ```
-firebase use --add [プロジェクトID]
+firebase use --add [firebaseのプロジェクトID]
 ```
 最後にデプロイ。
 ```
 firebase deploy
 ```
+## CircleCIと連携する
+これを行うことで`git push`した際にデプロイも行うようになる。  
+予めGitHubアカウントで[CircleCI](https://circleci.com/)にログインし、プロジェクトの登録を行う必要がある。  
+  
+まずデプロイするためのトークンを取得。
+```
+firebase login:ci
+```
+次に`.circleci/config.yml`を作成し、以下を記述。
+```
+version: 2
+jobs:
+  build:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/node:8.9.4
+    steps:
+      - checkout
+      - run:
+          name: Install firebase-tools
+          command: |
+            curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+            sudo apt-get install -y nodejs
+            echo prefix=${HOME}/.local >> ~/.npmrc
+            npm install -g firebase-tools
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+      - run: npm install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - run:
+          name: Build
+          command: npm run generate
+      - run:
+          name: Deploy
+          command: ~/.local/bin/firebase deploy --token [さきほど取得したトークン] --project the-base
+```
+  
 ## ぶち当たったところ
 ### Gitが認証エラー―を履くようになった
 → 最新版(ここでは2.17.0)を入れたら改善。
