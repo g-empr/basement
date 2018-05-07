@@ -1,7 +1,8 @@
 # Nuxt.js + firebase hostingまでにやったことメモ
 ## 環境を整える
 - Node.js
- - npm
+    - npm
+    - nodist
 - Vue.js
- - vue-cli
+    - vue-cli
 - Firebase
