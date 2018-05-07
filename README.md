@@ -34,7 +34,7 @@ npm install
 npm run dev
 ```
 ## デプロイの準備
-firebaseにデプロイするために`firebase.json`を用意する。
+firebaseにデプロイするために`firebase.json`を用意し、プロジェクト内に配置。
 ```
 {
     "hosting": {
@@ -47,9 +47,21 @@ firebaseにデプロイするために`firebase.json`を用意する。
     }
 }
 ```
+firebaseにログインしておく。
+```
+firebase login
+```
+予めブラウザからfirebase consoleにアクセスし、hosting用のプロジェクトを新規作成しておく。  
+できていれば、コマンドにてデプロイ先を指定する。
+```
+firebase use --add [プロジェクトID]
+```
+最後にデプロイ。
+```
+firebase deploy
+```
 ## ぶち当たったところ
 ### Gitが認証エラー―を履くようになった
 → 最新版(ここでは2.17.0)を入れたら改善。
 ### npm run dev でエラーを吐く
 → node/npmのバージョンを更新したら改善。
-### 
