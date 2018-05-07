@@ -100,12 +100,13 @@ jobs:
           command: npm run generate
       - run:
           name: Deploy
-          command: ~/.local/bin/firebase deploy --token [さきほど取得したトークン] --project the-base
+          command: ~/.local/bin/firebase deploy --token [さきほど取得したトークン] --project basement-12054
 ```
 最後にpushして確認する。
 ```
 git push
 ```
+これでpush時にデプロイも行うようになる。
   
 ## ぶち当たったところ
 ### Gitが認証エラー―を履くようになった
