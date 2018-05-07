@@ -1,4 +1,4 @@
-# Nuxt.js + firebase hostingまでにやったことメモ
+# Nuxt.js + firebase で公開するまでのメモ
 ## 環境を整える
 - Node.js
     - npm
