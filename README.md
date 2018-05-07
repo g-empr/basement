@@ -3,15 +3,15 @@
 - Node.js
     - npm
     - nodist
+    - firebase-tools
 - Vue.js
     - vue-cli
 - Firebase
-    - 
   
 ## デプロイの準備
 firebaseにデプロイするために`firebase.json`を用意する。
 ```
-    {
+{
     "hosting": {
         "public": "dist",
         "ignore": [
@@ -20,7 +20,7 @@ firebaseにデプロイするために`firebase.json`を用意する。
         "**/node_modules/**"
         ]
     }
-    }
+}
 ```
 ## ぶち当たったところ
 ### Gitが認証エラー―を履くようになった
